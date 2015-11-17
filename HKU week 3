@@ -1,60 +1,15 @@
 #lang scheme
-;Eigen gerotzooi:
-(define (add-each lst n)
-    (if (eqv? lst '()) '()
-        (cons (+ (first lst) n) 
-              (add-each (rest lst) n))))
 
 (define (call-repeat lst)   ; define function call-repeat that takes a list as argument
   (debug lst (length lst))) ; send the list argument to 'debug' function, as well as second argument equal to
 
-(define (debug lst i)
+(define (debug lst i) ; simply displays its given arguments for debug purposes.
   (display lst)
   (display i)
   (newline)
-  (reverses lst i))
+  (reverses lst i)) ; calls function 'reverses' with same arguments.
 
-(define (reverses lst i)
-  (if (<= i 0) lst
-      (cons lst (list-ref lst 3)))
+(define (reverses lst i) ; meant to return a reversed new list, from input lst.
+  (if (<= i 0) lst ; return lst if i = 0
+      (prepend lst (list-ref lst 3))) ; else construct lst
   (reverses lst (- i 1)))
-
-(define (get-last lst)
-  (if (= (length lst) 1) lst
-      (get-last (rest lst))))
-
-(define (add-last lst)
-  (append (get-last lst) lst))
-;Opdracht 1 - oefeningen met functies
-;Maak een functe herhaal die een nieuwe lijst produceert door een gegeven lijst eenmaal te herhalen.
-
-(define (herhaal lst)
-  (append lst lst))
-
-;Maak een functie herhaal-keer-om die een nieuwe lijst produceert door een gegeven lijst
-;achterstevoren aan de originele lijst te plakken.
-(define newlst '())
-(define counter
-  (lambda (lst n)
-    (if (eqv? '())
-      '()
-      (set! n (length lst)))))
-
-;(define keer-om
-;  (lambda (lst n)
-;    
-;    (if (empty? lst)
-;        newlst
-;        (set! newlst (cons (list-tail lst n) (keer-om lst (- n 1))))
-;    )
-;  )
-;)
-
-
-
-;(let countdown ((i 10))
-;  (if (= i 0) 'liftoff
-;      (begin
-;        (display i)
-;        (newline)
-;        (countdown (- i 1)))))
